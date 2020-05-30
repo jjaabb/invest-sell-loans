@@ -21,7 +21,8 @@ desired_job_type = ['Full time', 'Commerce', 'Statutory officer', 'Freelancer', 
 desired_debts_obligations_status = 'No'
 
 # if there is no file - then create it
-if not path.exists("/approved_loans_list.csv"):
+if path.exists("approved_loans_list.csv") is False:
+    print('failo dar nera')
     df_columns = ['Loan ID', 'Loan Amount', 'Maturity', 'APR interest', 'SAVY credit rating',
                   'Probability to default', 'Funding progress', 'Investment', 'Time', 'Age', 'Gender', 'City',
                   'Purpose of loan', 'Job type', 'Years at current employer',
@@ -35,6 +36,7 @@ if not path.exists("/approved_loans_list.csv"):
                   'Consumer credit loans', 'Mortgage']
     pd.DataFrame(columns=df_columns).set_index('Loan ID').to_csv('approved_loans_list.csv')  # creating file
 else:
+    print('jau yra failas')
     pass
 
 with requests.Session() as s:
